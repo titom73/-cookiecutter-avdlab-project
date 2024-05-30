@@ -1,0 +1,22 @@
+# dns servers.
+# OOB Management network default gateway.
+mgmt_gateway: 192.168.0.1
+# If ATD is running cEOS, management interface is Management0
+# If ATD is running vEOS, management interface is Management1
+mgmt_interface: Management0
+mgmt_interface_vrf: default
+
+ip_name_servers:
+  - ip_address: 192.168.2.1
+  - ip_address: 8.8.8.8
+
+# dns domain
+dns_domain: atd.lab
+
+# NTP Servers IP or DNS name, first NTP server will be prefered, and sourced from Managment VRF
+# ntp_servers:
+#  - 192.168.0.1
+
+management_ssh:
+  enable: True
+  idle_timeout: 0

@@ -1,0 +1,180 @@
+name: {{cookiecutter.project | slugify}}
+
+mgmt:
+  network: {{cookiecutter.project | slugify}}--oob-lan
+  ipv4-subnet: 192.168.0.0/24
+
+topology:
+  kinds:
+    ceos:
+      image: ${{cookiecutter.eos_name}}:${EOS_VERSION:={{cookiecutter.eos_version}}}
+    linux:
+      image: titom73/multitool:latest
+  nodes:
+nodes:
+    spine1:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.10
+      startup-config: atd-inventory/intended/configs/spine1.cfg
+      env:
+        TMODE: lacp
+      labels:
+        graph-level: 1
+        graph-icon: router
+    spine2:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.11
+      startup-config: atd-inventory/intended/configs/spine2.cfg
+      env:
+        TMODE: lacp
+      labels:
+        graph-level: 1
+        graph-icon: router
+    leaf1:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.12
+      startup-config: atd-inventory/intended/configs/leaf1.cfg
+      env:
+        TMODE: lacp
+      labels:
+        graph-level: 2
+        graph-icon: switch
+    leaf2:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.13
+      startup-config: atd-inventory/intended/configs/leaf2.cfg
+      env:
+        TMODE: lacp
+      labels:
+        graph-level: 2
+        graph-icon: switch
+    leaf3:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.14
+      startup-config: atd-inventory/intended/configs/leaf3.cfg
+      env:
+        TMODE: lacp
+      labels:
+        graph-level: 2
+        graph-icon: switch
+    leaf4:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.15
+      startup-config: atd-inventory/intended/configs/leaf4.cfg
+      env:
+        TMODE: lacp
+      labels:
+        graph-level: 2
+        graph-icon: switch
+    host1:
+      kind: linux
+      mgmt-ipv4: 192.168.0.16
+      # startup-config: configs/host1.cfg
+      env:
+        TMODE: lacp
+      exec:
+        - sleep 10
+        - vconfig add team0 110
+        - ifconfig team0.110 10.1.10.11 netmask 255.255.255.0
+        - ip route del default
+        # - ip route add default via 10.1.10.1
+      labels:
+        graph-level: 3
+        graph-icon: host
+    host3:
+      kind: linux
+      mgmt-ipv4: 192.168.0.18
+      # startup-config: configs/host1.cfg
+      env:
+        TMODE: lacp
+      exec:
+        - sleep 10
+        - vconfig add team0 111
+        - ifconfig team0.111 10.1.11.13 netmask 255.255.255.0
+        - ip route del default
+        - ip route add default via 10.1.11.1
+      labels:
+        graph-level: 3
+        graph-icon: host
+    host2:
+      kind: linux
+      mgmt-ipv4: 192.168.0.17
+      # startup-config: configs/host2.cfg
+      env:
+        TMODE: lacp
+      exec:
+        - sleep 10
+        - vconfig add team0 110
+        - ifconfig team0.110 10.1.10.12 netmask 255.255.255.0
+        - ip route del default
+        # - ip route add default via 10.1.10.1
+      labels:
+        graph-level: 3
+        graph-icon: host
+    host4:
+      kind: linux
+      mgmt-ipv4: 192.168.0.19
+      # startup-config: configs/host1.cfg
+      env:
+        TMODE: lacp
+      exec:
+        - sleep 10
+        - vconfig add team0 112
+        - ifconfig team0.112 10.1.12.14 netmask 255.255.255.0
+        - ip route del default
+        - ip route add default via 10.1.12.1
+      labels:
+        graph-level: 3
+        graph-icon: host
+
+
+    # --------------------------------------- #
+    # Graphite Node                           #
+    # Provides Topology Graphing and the      #
+    # ability to connect to nodes in the      #
+    # topology via a web/ssh session          #
+    # --------------------------------------- #
+    graphite:
+      kind: linux
+      image: netreplica/graphite
+      env:
+        GRAPHITE_DEFAULT_TYPE: clab
+        GRAPHITE_DEFAULT_TOPO: {{cookiecutter.project | slugify}}
+      binds:
+        - .:/htdocs/clab    # New path required for latest version
+      ports:
+        - 80:80
+      exec:
+        - sh -c 'graphite_motd.sh 80'
+      labels:
+        graph-hide: yes
+
+  links:
+    # Spines
+    - endpoints: ["leaf1:eth2", "spine1:eth2"]
+    - endpoints: ["leaf2:eth2", "spine1:eth3"]
+    - endpoints: ["leaf3:eth2", "spine1:eth4"]
+    - endpoints: ["leaf4:eth2", "spine1:eth5"]
+    - endpoints: ["leaf1:eth3", "spine2:eth2"]
+    - endpoints: ["leaf2:eth3", "spine2:eth3"]
+    - endpoints: ["leaf3:eth3", "spine2:eth4"]
+    - endpoints: ["leaf4:eth3", "spine2:eth5"]
+    # MLAG Links
+    - endpoints: ["leaf1:eth1", "leaf2:eth1"]
+    - endpoints: ["leaf1:eth6", "leaf2:eth6"]
+    - endpoints: ["leaf3:eth1", "leaf4:eth1"]
+    - endpoints: ["leaf3:eth6", "leaf4:eth6"]
+    - endpoints: ["spine1:eth1", "spine2:eth1"]
+    - endpoints: ["spine1:eth6", "spine2:eth6"]
+    # Host1 Links
+    - endpoints: ["leaf1:eth4", "host1:eth1"]
+    - endpoints: ["leaf2:eth4", "host1:eth2"]
+    # Host 3 Links
+    - endpoints: ["leaf1:eth5", "host3:eth1"]
+    - endpoints: ["leaf2:eth5", "host3:eth2"]
+    # Host2 Links
+    - endpoints: ["leaf3:eth4", "host2:eth1"]
+    - endpoints: ["leaf4:eth4", "host2:eth2"]
+    # Host 4 Links
+    - endpoints: ["leaf3:eth5", "host4:eth1"]
+    - endpoints: ["leaf4:eth5", "host4:eth2"]

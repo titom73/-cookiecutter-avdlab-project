@@ -1,0 +1,13 @@
+# daemon_terminattr:
+#   cvaddrs:
+#     - 10.73.1.238:9910
+#   cvauth:
+#     method: token
+#     token_file: "/tmp/token"
+#   cvobscurekeyfile: false
+#   cvsourceip: '{{ ansible_host }}'
+#   cvvrf: default
+#   cvgnmi: true
+#   disable_aaa: false
+#   ingestexclude: '/Sysdb/cell/1/agent,/Sysdb/cell/2/agent'
+#   smashexcludes: 'ale,flexCounter,hardware,kni,pulse,strata'

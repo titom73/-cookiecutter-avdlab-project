@@ -1,0 +1,6 @@
+{
+  "project": "atd-lab",
+  "oob_subnet": "192.169.1.0/24",
+  "eos_name": "arista/ceos",
+  "eos_version": "4.30.3M"
+}
