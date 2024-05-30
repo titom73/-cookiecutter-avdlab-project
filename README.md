@@ -1,4 +1,4 @@
-# Python Project template
+# AVD/Containerlab Project template
 
 ## Overview
 
