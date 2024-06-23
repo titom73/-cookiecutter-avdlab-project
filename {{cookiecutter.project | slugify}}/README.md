@@ -4,10 +4,12 @@ Basic EVPN/VXLAN setup based on [containerlab](https://containerlab.dev/) and [A
 
 ## Requirements
 
-- Containerlab in version `>=0.50.0`
+- Containerlab in version `>=0.55.0`
 - Ansible
 - Arista anta
 - EOS Dowloader CLI
+
+### Setup project environment
 
 ```bash
 # Create a virtual-env
@@ -23,9 +25,16 @@ pip install -r requirements.txt
 ansible-galaxy collection install -r collections.yml --force
 ```
 
-## Topology
+### Get cEOS images
 
-![Network Diagram](diagram.png)
+```bash
+# Download cEOS image (Update version accordingly)
+ ardl get eos --image-type cEOS --version 4.30.3M --import-docker
+```
+
+## Topology overview
+
+![Network Diagram](topology.png)
 
 - Deploy lab:
 
@@ -45,6 +54,24 @@ sudo containerlab save
 
 ```bash
 sudo containerlab destroy
+```
+
+## Generate topology diagram
+
+### For offline usage
+
+```bash
+sudo containerlab graph --drawio
+```
+
+It generates a draw.io diagram that can be used in project and delivery.
+
+### For markdown rendering
+
+> Not yet tested in project. May require some tuning.
+
+```bash
+sudo containerlab graph --dot --offline
 ```
 
 ## Configuration Management
