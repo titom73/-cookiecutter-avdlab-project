@@ -2,7 +2,7 @@ name: {{cookiecutter.project | slugify}}
 
 mgmt:
   network: {{cookiecutter.project | slugify}}--oob-lan
-  ipv4-subnet: 192.168.0.0/24
+  ipv4-subnet: "{{ cookiecutter.oob_subnet }}"
 
 topology:
   kinds:
@@ -11,10 +11,9 @@ topology:
     linux:
       image: titom73/multitool:latest
   nodes:
-nodes:
     spine1:
       kind: ceos
-      mgmt-ipv4: 192.168.0.10
+      mgmt-ipv4: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(10) }}"
       startup-config: atd-inventory/intended/configs/spine1.cfg
       env:
         TMODE: lacp
@@ -23,7 +22,7 @@ nodes:
         graph-icon: router
     spine2:
       kind: ceos
-      mgmt-ipv4: 192.168.0.11
+      mgmt-ipv4: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(11) }}"
       startup-config: atd-inventory/intended/configs/spine2.cfg
       env:
         TMODE: lacp
@@ -32,7 +31,7 @@ nodes:
         graph-icon: router
     leaf1:
       kind: ceos
-      mgmt-ipv4: 192.168.0.12
+      mgmt-ipv4: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(12) }}"
       startup-config: atd-inventory/intended/configs/leaf1.cfg
       env:
         TMODE: lacp
@@ -41,7 +40,7 @@ nodes:
         graph-icon: switch
     leaf2:
       kind: ceos
-      mgmt-ipv4: 192.168.0.13
+      mgmt-ipv4: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(13) }}"
       startup-config: atd-inventory/intended/configs/leaf2.cfg
       env:
         TMODE: lacp
@@ -50,7 +49,7 @@ nodes:
         graph-icon: switch
     leaf3:
       kind: ceos
-      mgmt-ipv4: 192.168.0.14
+      mgmt-ipv4: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(14) }}"
       startup-config: atd-inventory/intended/configs/leaf3.cfg
       env:
         TMODE: lacp
@@ -59,7 +58,7 @@ nodes:
         graph-icon: switch
     leaf4:
       kind: ceos
-      mgmt-ipv4: 192.168.0.15
+      mgmt-ipv4: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(15) }}"
       startup-config: atd-inventory/intended/configs/leaf4.cfg
       env:
         TMODE: lacp
@@ -68,7 +67,7 @@ nodes:
         graph-icon: switch
     host1:
       kind: linux
-      mgmt-ipv4: 192.168.0.16
+      mgmt-ipv4: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(16) }}"
       # startup-config: configs/host1.cfg
       env:
         TMODE: lacp
@@ -83,7 +82,7 @@ nodes:
         graph-icon: host
     host3:
       kind: linux
-      mgmt-ipv4: 192.168.0.18
+      mgmt-ipv4: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(18) }}"
       # startup-config: configs/host1.cfg
       env:
         TMODE: lacp
@@ -98,7 +97,7 @@ nodes:
         graph-icon: host
     host2:
       kind: linux
-      mgmt-ipv4: 192.168.0.17
+      mgmt-ipv4: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(17) }}"
       # startup-config: configs/host2.cfg
       env:
         TMODE: lacp
@@ -113,7 +112,7 @@ nodes:
         graph-icon: host
     host4:
       kind: linux
-      mgmt-ipv4: 192.168.0.19
+      mgmt-ipv4: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(19) }}"
       # startup-config: configs/host1.cfg
       env:
         TMODE: lacp

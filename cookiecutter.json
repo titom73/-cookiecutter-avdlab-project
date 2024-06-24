@@ -9,5 +9,9 @@
     "playbooks/*",
     "{{cookiecutter.project | slugify}}-inventory/group_vars/ATD_LAB/cvp.yml",
     "{{cookiecutter.project | slugify}}-inventory/group_vars/all/auth_management.yml"
+  ],
+  "_extensions": [
+    "local_extensions.generate_mgmt_ip",
+    "local_extensions.generate_ip_with_subnet"
   ]
 }

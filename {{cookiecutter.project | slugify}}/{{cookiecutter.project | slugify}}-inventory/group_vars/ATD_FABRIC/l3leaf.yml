@@ -27,11 +27,11 @@ l3leaf:
       nodes:
         - name: leaf1
           id: 1
-          mgmt_ip: 192.168.0.12/24
+          mgmt_ip: "{{ cookiecutter.oob_subnet | generate_ip_with_subnet(12) }}"
           uplink_switch_interfaces: [Ethernet2, Ethernet2]
         - name: leaf2
           id: 2
-          mgmt_ip: 192.168.0.13/24
+          mgmt_ip: "{{ cookiecutter.oob_subnet | generate_ip_with_subnet(13) }}"
           uplink_switch_interfaces: [Ethernet3, Ethernet3]
     - group: pod2
       bgp_as: 65102
@@ -44,9 +44,10 @@ l3leaf:
       nodes:
         - name: leaf3
           id: 3
-          mgmt_ip: 192.168.0.14/24
+          mgmt_ip: "{{ cookiecutter.oob_subnet | generate_ip_with_subnet(14) }}"
           uplink_switch_interfaces: [Ethernet4, Ethernet4]
         - name: leaf4
           id: 4
-          mgmt_ip: 192.168.0.15/24
+          mgmt_ip: "{{ cookiecutter.oob_subnet | generate_ip_with_subnet(15) }}"
           uplink_switch_interfaces: [Ethernet5, Ethernet5]
+

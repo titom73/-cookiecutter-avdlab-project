@@ -1,6 +1,4 @@
 ---
-
-
 ########################################
 # Fabric Topology
 ########################################
@@ -15,14 +13,11 @@ spine:
   nodes:
     - name: spine1
       id: 1
-      mgmt_ip: 192.168.0.10/24
+      mgmt_ip: "{{ cookiecutter.oob_subnet | generate_ip_with_subnet(10) }}"
     - name: spine2
       id: 2
       mgmt_ip: 192.168.0.11/24
-
 # Leaf switch groups
 # A maximum of two nodes can form a leaf group
 # When two nodes are in a leaf group this will automatically form mlag pair
-
-
 
