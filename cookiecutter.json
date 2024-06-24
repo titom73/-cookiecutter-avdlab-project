@@ -3,5 +3,11 @@
   "oob_subnet": "192.169.1.0/24",
   "eos_name": "arista/ceos",
   "eos_version": "4.30.3M",
-  "avd_version": "4.8.0"
+  "avd_version": "4.8.0",
+  "_copy_without_render": [
+    "{{cookiecutter.project | slugify}}/playbooks/*",
+    "playbooks/*",
+    "{{cookiecutter.project | slugify}}-inventory/group_vars/ATD_LAB/cvp.yml",
+    "{{cookiecutter.project | slugify}}-inventory/group_vars/all/auth_management.yml"
+  ]
 }

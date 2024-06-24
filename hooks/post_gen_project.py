@@ -27,25 +27,5 @@ def create_git() -> None:
 
 
 if __name__ == "__main__":
-    # if "{{cookiecutter.include_github_actions}}" != "y":
-    #     remove_dir(".github/workflows")
-    #     print("GH actions removed")
-
-    # if "{{cookiecutter.include_drone_ci}}" != "y":
-    #     remove_file(".drone.yml")
-    #     print("Drone CI removed")
-
-    # if "{{cookiecutter.dockerfile}}" != "y":
-    #     remove_file("Dockerfile")
-    #     print("Deockerfile removed")
-
-    # if "{{cookiecutter.codecov}}" != "y":
-    #     remove_file("codecov.yaml")
-    #     print("Codecove removed")
-
-    # if "{{cookiecutter.devcontainer}}" != "y":
-    #     remove_dir(".devcontainer")
-    #     print("Devcontainer removed")
-
     print("Creating git repository...")
     create_git()
