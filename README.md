@@ -8,6 +8,7 @@ Git repository to easily generate a project based on Arista AVD and Containerlab
 - `oob_subnet`: Subnet to use for Out of Band management in Containerlab (default: `192.168.1.0/24`)
 - `eos_name`: Name of the cEOS container (default: `arista/ceos`)
 - `eos_version`: Version of cEOS to use (default: `4.30.3M`)
+- `avd_version`: Version of [AVD](https://github.com/aristanetworks/avd) to use in the project (default: `4.8.0`)
 
 
 ## Getting Started
