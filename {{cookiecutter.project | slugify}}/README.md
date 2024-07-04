@@ -4,8 +4,8 @@ Basic EVPN/VXLAN setup based on [containerlab](https://containerlab.dev/) and [A
 
 ## Documentation
 
-- [Devices documentation]({{cookiecutter.project | slugify}}/{{cookiecutter.project | slugify}}-inventory/documentation/devices/)
-- [Fabric documentation]({{cookiecutter.project | slugify}}/{{cookiecutter.project | slugify}}-inventory/documentation/fabric/)
+- [Devices documentation]({{cookiecutter.project | slugify}}-inventory/documentation/devices/)
+- [Fabric documentation]({{cookiecutter.project | slugify}}-inventory/documentation/fabric/)
 
 ## Requirements
 
