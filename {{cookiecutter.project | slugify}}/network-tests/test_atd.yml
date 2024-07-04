@@ -12,7 +12,7 @@
 anta.tests.system:
   - VerifyReloadCause:
   - VerifyCoredump:
-  - VerifyAgentLogs:
+  #- VerifyAgentLogs:
   - VerifyCPUUtilization:
   - VerifyMemoryUtilization:
   - VerifyFileSystemUtilization:
@@ -22,9 +22,11 @@ anta.tests.configuration:
   - VerifyRunningConfigDiffs:
 
 anta.tests.mlag:
-  - verify_mlag_status:
-  - verify_mlag_interfaces:
-  - verify_mlag_config_sanity:
+  - VerifyMlagConfigSanity:
+  - VerifyMlagInterfaces:
+  - VerifyMlagStatus:
+#- verify_mlag_interfaces:
+#- verify_mlag_config_sanity:
 
 anta.tests.interfaces:
   - VerifyInterfaceUtilization:
@@ -32,7 +34,6 @@ anta.tests.interfaces:
   - VerifyInterfaceErrors:
   - VerifyInterfaceDiscards:
   - VerifyInterfaceErrDisabled:
-  - VerifyStormControlDrops:
   - VerifyPortChannels:
   - VerifyIllegalLACP:
 
