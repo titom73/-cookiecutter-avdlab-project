@@ -1,6 +1,11 @@
 # Arista ATD Emulation on Containerlab
 
-Basic EVPN/VXLAN setup based on [containerlab](https://containerlab.dev/) and [Arista AVD collection](https://www.avd.sh) to build configuration.
+Basic EVPN/VXLAN setup based on [containerlab](https://containerlab.dev/) and [Arista AVD collection](https://avs.arista.com) to build configuration.
+
+## Documentation
+
+- [Devices documentation]({{cookiecutter.project | slugify}}/{{cookiecutter.project | slugify}}-inventory/documentation/devices/)
+- [Fabric documentation]({{cookiecutter.project | slugify}}/{{cookiecutter.project | slugify}}-inventory/documentation/fabric/)
 
 ## Requirements
 
@@ -36,13 +41,15 @@ ansible-galaxy collection install -r collections.yml --force
 
 ![Network Diagram](topology.png)
 
+- Specific containerlab and nodes definition [documentation](./docs/clab.md)
+
 - Deploy lab:
 
 ```bash
 sudo containerlab deploy
 ```
 
-You can access lab topology using SSH or your browser with `http://<IP of clab>/graphite`
+If graphite image is deployed, You can access lab topology using SSH or your browser with `http://<IP of clab>/graphite`
 
 - Save lab
 
