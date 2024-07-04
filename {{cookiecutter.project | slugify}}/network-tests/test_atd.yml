@@ -1,16 +1,42 @@
 ---
-anta.tests.software:
-  - verify_eos_version:
-      versions:
-        - '4.28.3M-28837868.4283M (engineering build)'
-  - verify_terminattr_version:
-      versions:
-        - v1.22.1
+# More tests available: https://github.com/aristanetworks/anta/blob/main/examples/tests.yaml
+
+# anta.tests.software:
+#   - verify_eos_version:
+#       versions:
+#         - '4.28.3M-28837868.4283M (engineering build)'
+#   - verify_terminattr_version:
+#       versions:
+#         - v1.22.1
+
 anta.tests.system:
-  - verify_ntp:
-  - verify_syslog:
+  - VerifyReloadCause:
+  - VerifyCoredump:
+  - VerifyAgentLogs:
+  - VerifyCPUUtilization:
+  - VerifyMemoryUtilization:
+  - VerifyFileSystemUtilization:
+
+anta.tests.configuration:
+  - VerifyZeroTouch:
+  - VerifyRunningConfigDiffs:
 
 anta.tests.mlag:
   - verify_mlag_status:
   - verify_mlag_interfaces:
   - verify_mlag_config_sanity:
+
+anta.tests.interfaces:
+  - VerifyInterfaceUtilization:
+      threshold: 70.0
+  - VerifyInterfaceErrors:
+  - VerifyInterfaceDiscards:
+  - VerifyInterfaceErrDisabled:
+  - VerifyStormControlDrops:
+  - VerifyPortChannels:
+  - VerifyIllegalLACP:
+
+anta.tests.routing:
+  generic:
+    - VerifyRoutingProtocolModel:
+        model: multi-agent
