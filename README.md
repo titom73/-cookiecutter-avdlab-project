@@ -28,8 +28,9 @@ cookiecutter gh:titom73/cookiecutter-avdlab-project.git
 
 - containerlab installed
 - Ansible (can be installed via project requirements)
-- Arista Validated Design (can be installed via project requirements)
-- EOS Dowloader CLI
+- [Arista Validated Design](https://avd.arista.com) (can be installed via project requirements)
+- Arista [ANTA framework](https://anta.arista.com) (can be installed via project requirements)
+- [EOS Dowloader CLI](https://github.com/titom73/eos-downloader/) (can be installed via project requirements)
 
 ## Contribution guide
 
