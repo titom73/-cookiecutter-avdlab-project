@@ -2,14 +2,20 @@
 anta_inventory:
   hosts:
     - host: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(10) }}"
+      name: "spine1"
       tags: ['spine']
     - host: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(11) }}"
+      name: "spine2"
       tags: ['spine']
     - host: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(12) }}"
+      name: "leaf1"
       tags: ['leaf']
     - host: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(13) }}"
+      name: "leaf2"
       tags: ['leaf']
     - host: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(14) }}"
+      name: "leaf3"
       tags: ['leaf']
     - host: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(15) }}"
+      name: "leaf4"
       tags: ['leaf']
