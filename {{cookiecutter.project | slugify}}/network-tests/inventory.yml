@@ -1,15 +1,15 @@
 ---
 anta_inventory:
   hosts:
-    - host: 192.168.0.10
+    - host: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(10) }}"
       tags: ['spine']
-    - host: 192.168.0.11
+    - host: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(11) }}"
       tags: ['spine']
-    - host: 192.168.0.12
+    - host: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(12) }}"
       tags: ['leaf']
-    - host: 192.168.0.13
+    - host: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(13) }}"
       tags: ['leaf']
-    - host: 192.168.0.14
+    - host: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(14) }}"
       tags: ['leaf']
-    - host: 192.168.0.115
+    - host: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(15) }}"
       tags: ['leaf']
