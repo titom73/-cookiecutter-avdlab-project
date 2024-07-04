@@ -18,7 +18,7 @@ Git repository to easily generate a project based on Arista AVD and Containerlab
 pipx install cookiecutter jinja2-time
 
 # Create your project (custom git server)
-cookiecutter https://git.as73.inetsix.net/labs/cookiecutter-avdlab-project.git
+cookiecutter git@git.as73.inetsix.net:Templates/cookiecutter-avdlab-project.git
 
 # Create your project (github)
 cookiecutter gh:titom73/cookiecutter-avdlab-project.git
