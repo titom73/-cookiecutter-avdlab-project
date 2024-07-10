@@ -30,6 +30,12 @@ pip install -r requirements.txt
 ansible-galaxy collection install -r collections.yml --force
 ```
 
+It can be wrapped up in a single Make command:
+
+```bash
+make setup
+```
+
 ### Get cEOS images
 
 ```bash
