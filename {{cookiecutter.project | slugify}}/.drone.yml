@@ -1,0 +1,9 @@
+kind: pipeline
+type: docker
+name: Ansible AVD CI
+
+steps:
+  - name: Check ansible syntax
+    image: git.as73.inetsix.net/docker/pylab-runner:latest
+    commands:
+      - ansible-playbook playbooks/atd-fabric-deploy.yml --tags build
