@@ -1,0 +1,28 @@
+on:
+  push:
+    paths:
+      - "atd-inventory/*.yml"
+      - "atd-inventory/**/*.yml"
+      - ".forgejo/**/avd.yml"
+  pull_request:
+    types: [opened, synchronize, reopened]
+  # Not supported by Forgegjo
+  workflow_dispatch:
+
+jobs:
+  avd-build:
+    runs-on: ubuntu-latest
+    container:
+      image: git.as73.inetsix.net/docker/pylab-runner:node
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update requirements
+        run: |
+          pip install --upgrade -r requirements.txt
+          ansible-galaxy collection install --force -r collections.yml
+      - name: Check Ansible syntax
+        run: |
+          ansible-playbook playbooks/atd-fabric-deploy.yml --diff --check
+      - name: Run ANSIBLE AVD to BUILD
+        run: |
+          ansible-playbook playbooks/atd-fabric-deploy.yml --diff --tags build
