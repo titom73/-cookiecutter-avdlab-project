@@ -1,13 +1,11 @@
 on:
-  push:
-    paths:
-      - "atd-inventory/*.yml"
-      - "atd-inventory/**/*.yml"
-      - ".forgejo/**/avd.yml"
-  pull_request:
-    types: [opened, synchronize, reopened]
-  # Not supported by Forgegjo
   workflow_dispatch:
+    inputs:
+      AVD_VERSION:
+        description: "Version of AVD to test"
+        required: True
+        default: "4.8"
+        type: string
 
 jobs:
   avd-build:
@@ -16,24 +14,14 @@ jobs:
       image: git.as73.inetsix.net/docker/pylab-runner:node
     steps:
       - uses: actions/checkout@v4
-
       - name: Update requirements
         run: |
           pip install --upgrade -r requirements.txt
           ansible-galaxy collection install --force -r collections.yml
-
+          ansible-galaxy collection install --force "arista.avd==${{AVD_VERSION}}"
       - name: Run ANSIBLE AVD to BUILD
         run: |
           ansible-playbook playbooks/atd-fabric-deploy.yml --diff --tags build
-
-      - name: Upload build results to repository
-        run: |
-          git config --global user.name 'git-actions[bot]'
-          git config --global user.email 'git-actions[bot]@git.as73.inetsix.net'
-          git add .
-          git commit -am 'make: Auto-build results update'
-          git push origin main
-
       - name: Upload AVD outputs
         uses: https://code.forgejo.org/forgejo/upload-artifact@v4
         with:
