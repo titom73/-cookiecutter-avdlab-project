@@ -14,8 +14,14 @@ ip_name_servers:
 dns_domain: atd.lab
 
 # NTP Servers IP or DNS name, first NTP server will be prefered, and sourced from Managment VRF
-# ntp_servers:
-#  - 192.168.0.1
+# ntp:
+#   local_interface:
+#     vrf: "{{mgmt_interface_vrf}}"
+#     name: "{{mgmt_interface}}"
+#   servers:
+#     - name: fr.pool.ntp.org
+#       preferred: True
+#     - name: uk.pool.ntp.org
 
 management_ssh:
   enable: True
