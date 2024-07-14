@@ -1,14 +1,12 @@
 on:
   push:
     paths:
-      - "atd-inventory/*.yml"
-      - "atd-inventory/**/*.yml"
+      - "{{cookiecutter.project | slugify}}-inventory/*.yml"
+      - "{{cookiecutter.project | slugify}}-inventory/**/*.yml"
       - ".forgejo/**/avd.yml"
-  pull_request:
-    types: [opened, synchronize, reopened]
-  # Not supported by Forgegjo
-  workflow_dispatch:
-
+  #pull_request:
+  #  types: [opened, synchronize, reopened]
+  
 jobs:
   avd-build:
     runs-on: ubuntu-latest
@@ -26,13 +24,13 @@ jobs:
         run: |
           ansible-playbook playbooks/atd-fabric-deploy.yml --diff --tags build
 
-      - name: Upload build results to repository
+      - name: Upload AVD build results to repository
         run: |
           git config --global user.name 'git-actions[bot]'
           git config --global user.email 'git-actions[bot]@git.as73.inetsix.net'
           git add .
-          git commit -am 'make: Auto-build results update'
-          git push origin main
+          git commit -am 'make: Auto-build results update' || true
+          git push origin HEAD || true
 
       - name: Upload AVD outputs
         uses: https://code.forgejo.org/forgejo/upload-artifact@v4
