@@ -33,6 +33,7 @@ ansible-galaxy collection install -r collections.yml --force
 It can be wrapped up in a single Make command:
 
 ```bash
+# Single command provisioning with Make
 make setup
 ```
 
@@ -43,12 +44,13 @@ make setup
  ardl get eos --image-type cEOS --version 4.30.3M --import-docker
 ```
 
+Full [`eos-downloader` documentation](https://github.com/titom73/eos-downloader)
+
 ## Topology overview
 
 ![Network Diagram](topology.png)
 
 - Specific containerlab and nodes definition [documentation](./docs/clab.md)
-
 - Deploy lab:
 
 ```bash
