@@ -8,6 +8,7 @@
     "{{cookiecutter.project | slugify}}/playbooks/*",
     "playbooks/*",
     "{{cookiecutter.project | slugify}}-inventory/group_vars/ATD_LAB/cvp.yml",
+    "{{cookiecutter.project | slugify}}-inventory/group_vars/ATD_LAB/management.yml",
     "{{cookiecutter.project | slugify}}-inventory/group_vars/all/auth_management.yml"
   ],
   "_extensions": [
