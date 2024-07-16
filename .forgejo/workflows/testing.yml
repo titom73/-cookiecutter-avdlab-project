@@ -1,0 +1,23 @@
+on:
+  push:
+    paths:
+      - "!*.md"
+      - "!.github/*"
+      - "!.github/**"
+      - "!.gitignore"
+
+jobs:
+  test-template:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install project requirements
+        run: |
+          pip install --upgrade -r requirements.txt
+      - name: Create project from cookiecutter
+        run: |
+          cookiecutter . --overwrite-if-exists --no-input
+      - name: Test generated project setup
+        run: |
+          cd atd-lab
+          make setup
