@@ -24,6 +24,10 @@ jobs:
         run: |
           ansible-playbook playbooks/atd-fabric-deploy.yml --diff --tags build
 
+      - name: Run AVD State validation in dry-run mode
+        run: |
+          ansible-playbook playbooks/atd-validate-states.yml --check  
+
       - name: Upload AVD build results to repository
         run: |
           git config --global user.name 'git-actions[bot]'
@@ -32,7 +36,7 @@ jobs:
           git commit -am 'make: Auto-build results update' || true
           git push origin HEAD || true
 
-      - name: Upload AVD outputs
+      - name: Upload AVD artifacts to Action server
         uses: https://code.forgejo.org/forgejo/upload-artifact@v4
         with:
           name: avd-configuration
