@@ -159,4 +159,4 @@ ansible-playbook playbooks/atd-fabric-deploy.yml --tags build,deploy_cvp
 
 ## Startup configuration
 
-EOS devices configuration are saved under [atd-inventory/intended/configs](atd-inventory/intended/configs).
+EOS devices configuration are saved under [atd-inventory/intended/configs]{{cookiecutter.project | slugify}}-inventory/intended/configs).
