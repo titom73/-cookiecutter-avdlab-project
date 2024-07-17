@@ -141,21 +141,21 @@ ansible-playbook playbooks/atd-fabric-deploy.yml --tags build,deploy_cvp
 
 | Hostname | Management Interface | IP Address      |
 | -------- | -------------------- | --------------  |
-| Spine1   | Management0          | 192.168.0.10/24 |
-| Spine2   | Management0          | 192.168.0.11/24 |
-| Leaf1    | Management0          | 192.168.0.12/24 |
-| Leaf2    | Management0          | 192.168.0.13/24 |
-| Leaf3    | Management0          | 192.168.0.14/24 |
-| Leaf4    | Management0          | 192.168.0.15/24 |
+| Spine1   | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(10) }}/24 |
+| Spine2   | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(11) }}/24 |
+| Leaf1    | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(12) }}/24 |
+| Leaf2    | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(13) }}/24 |
+| Leaf3    | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(14) }}/24 |
+| Leaf4    | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(15) }}/24 |
 
 ### Linux containers
 
 | Hostname | Managemnt Interface | IP Address      |
 | -------- | ------------------- | --------------  |
-| Host1    | Eth0                | 192.168.0.16/24 |
-| Host2    | Eth0                | 192.168.0.17/24 |
-| Host3    | Eth0                | 192.168.0.18/24 |
-| Host4    | Eth0                | 192.168.0.19/24 |
+| Host1    | Eth0                | {{ cookiecutter.oob_subnet | generate_mgmt_ip(16) }}/24 |
+| Host2    | Eth0                | {{ cookiecutter.oob_subnet | generate_mgmt_ip(17) }}/24 |
+| Host3    | Eth0                | {{ cookiecutter.oob_subnet | generate_mgmt_ip(18) }}/24 |
+| Host4    | Eth0                | {{ cookiecutter.oob_subnet | generate_mgmt_ip(19) }}/24 |
 
 ## Startup configuration
 
