@@ -25,7 +25,7 @@ jobs:
           ansible-playbook playbooks/atd-fabric-deploy.yml --diff --tags build
 
       - name: Run AVD State validation in dry-run mode
-        if: ${{ hashFiles('{{ cookiecutter.project | slugify}}-inventory/reports/') == '' }}
+        if: ${{ {{ hashFiles('{{ cookiecutter.project | slugify}}-inventory/reports/') == '' }} }}
         run: |
           ansible-playbook playbooks/atd-validate-states.yml --check
 
