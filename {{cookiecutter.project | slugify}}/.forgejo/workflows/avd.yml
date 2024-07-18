@@ -6,7 +6,7 @@ on:
       - ".forgejo/**/avd.yml"
   #pull_request:
   #  types: [opened, synchronize, reopened]
-  
+
 jobs:
   avd-build:
     runs-on: ubuntu-latest
@@ -25,8 +25,9 @@ jobs:
           ansible-playbook playbooks/atd-fabric-deploy.yml --diff --tags build
 
       - name: Run AVD State validation in dry-run mode
+        if: ${{ hashFiles('{{ cookiecutter.project | slugify}}-inventory/reports/') == '' }}
         run: |
-          ansible-playbook playbooks/atd-validate-states.yml --check  
+          ansible-playbook playbooks/atd-validate-states.yml --check
 
       - name: Upload AVD build results to repository
         run: |

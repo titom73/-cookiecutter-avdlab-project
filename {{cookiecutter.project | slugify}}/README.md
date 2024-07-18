@@ -4,8 +4,10 @@ Basic EVPN/VXLAN setup based on [containerlab](https://containerlab.dev/) and [A
 
 ## Documentation
 
-- [Devices documentation]({{cookiecutter.project | slugify}}-inventory/documentation/devices/)
-- [Fabric documentation]({{cookiecutter.project | slugify}}-inventory/documentation/fabric/)
+- [Devices documentation]({{cookiecutter.project | slugify}}-inventory/documentation/devices/).
+- [Fabric documentation]({{cookiecutter.project | slugify}}-inventory/documentation/fabric/).
+- [Startup configurations]({{cookiecutter.project | slugify}}-inventory/intended/configs).
+- [State report]({{cookiecutter.project | slugify}}-inventory/intended/reports).
 
 ## Requirements
 
@@ -159,4 +161,3 @@ ansible-playbook playbooks/atd-fabric-deploy.yml --tags build,deploy_cvp
 
 ## Startup configuration
 
-EOS devices configuration are saved under [atd-inventory/intended/configs]{{cookiecutter.project | slugify}}-inventory/intended/configs).
