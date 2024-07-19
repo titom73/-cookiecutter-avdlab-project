@@ -7,14 +7,38 @@ Basic EVPN/VXLAN setup based on [containerlab](https://containerlab.dev/) and [A
 - [Devices documentation]({{cookiecutter.project | slugify}}-inventory/documentation/devices/).
 - [Fabric documentation]({{cookiecutter.project | slugify}}-inventory/documentation/fabric/).
 - [Startup configurations]({{cookiecutter.project | slugify}}-inventory/intended/configs).
-- [State report]({{cookiecutter.project | slugify}}-inventory/intended/reports).
+- [Fabric state report]({{cookiecutter.project | slugify}}-inventory/reports/ATD_FABRIC-state.md).
 
 ## Requirements
 
+- Python3 `>=3.9` with venv support
 - Containerlab in version `>=0.55.0`
 - Ansible
 - Arista anta
 - EOS Dowloader CLI
+
+## Getting started
+
+```bash
+# Build and configure virtual-env
+make setup
+
+# Download cEOS image (Update version accordingly)
+ardl get eos --image-type cEOS --version 4.30.3M --import-docker
+
+# Build artifact
+ansible-playbook playbooks/atd-fabric-deploy.yml --tags build
+
+# Start topology
+containerlab deploy
+```
+
+## Topology Overview
+
+![Network Diagram](topology.png)
+
+## Commands details
+
 
 ### Setup project environment
 
@@ -43,14 +67,12 @@ make setup
 
 ```bash
 # Download cEOS image (Update version accordingly)
- ardl get eos --image-type cEOS --version 4.30.3M --import-docker
+ardl get eos --image-type cEOS --version 4.30.3M --import-docker
 ```
 
 Full [`eos-downloader` documentation](https://github.com/titom73/eos-downloader)
 
-## Topology overview
-
-![Network Diagram](topology.png)
+### Manage topology
 
 - Specific containerlab and nodes definition [documentation](./docs/clab.md)
 - Deploy lab:
@@ -73,9 +95,9 @@ sudo containerlab save
 sudo containerlab destroy
 ```
 
-## Generate topology diagram
+### Generate topology diagram
 
-### For offline usage
+#### For offline usage
 
 ```bash
 sudo containerlab graph --drawio
@@ -83,7 +105,7 @@ sudo containerlab graph --drawio
 
 It generates a draw.io diagram that can be used in project and delivery.
 
-### For markdown rendering
+#### For markdown rendering
 
 > Not yet tested in project. May require some tuning.
 
@@ -91,7 +113,7 @@ It generates a draw.io diagram that can be used in project and delivery.
 sudo containerlab graph --dot --offline
 ```
 
-## Configuration Management
+### Configuration Management
 
 __Inventory:__
 
@@ -158,6 +180,4 @@ ansible-playbook playbooks/atd-fabric-deploy.yml --tags build,deploy_cvp
 | Host2    | Eth0                | {{ cookiecutter.oob_subnet | generate_mgmt_ip(17) }}/24 |
 | Host3    | Eth0                | {{ cookiecutter.oob_subnet | generate_mgmt_ip(18) }}/24 |
 | Host4    | Eth0                | {{ cookiecutter.oob_subnet | generate_mgmt_ip(19) }}/24 |
-
-## Startup configuration
 

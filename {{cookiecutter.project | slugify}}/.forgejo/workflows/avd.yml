@@ -6,6 +6,8 @@ on:
       - ".forgejo/**/avd.yml"
   #pull_request:
   #  types: [opened, synchronize, reopened]
+env:
+  ANTA_REPORT: "{{ cookiecutter.project | slugify}}-inventory/reports/"
 
 jobs:
   avd-build:
@@ -25,7 +27,7 @@ jobs:
           ansible-playbook playbooks/atd-fabric-deploy.yml --diff --tags build
 
       - name: Run AVD State validation in dry-run mode
-        if: ${{ {{ hashFiles('{{ cookiecutter.project | slugify}}-inventory/reports/') == '' }} }}
+        {% raw %}if: ${{ hashFiles('{% endraw %}{{cookiecutter.project | slugify }}-inventory/reports{% raw %}') == '' }}'{% endraw %}
         run: |
           ansible-playbook playbooks/atd-validate-states.yml --check
 

@@ -25,3 +25,4 @@ jobs:
         run: |
           cd atd-lab
           make setup
+          rm -rf .venv
