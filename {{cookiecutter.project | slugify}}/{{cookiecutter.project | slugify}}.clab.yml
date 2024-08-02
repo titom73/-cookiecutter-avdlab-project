@@ -158,7 +158,7 @@ topology:
     # MLAG Links
     - endpoints: ["leaf1:eth55", "leaf2:eth55"]
     - endpoints: ["leaf1:eth56", "leaf2:eth56"]
-    - endpoints: ["leaf3:eth5", "leaf4:eth55"]
+    - endpoints: ["leaf3:eth55", "leaf4:eth55"]
     - endpoints: ["leaf3:eth56", "leaf4:eth56"]
 
     # Leaf1 & Leaf 2 Links
