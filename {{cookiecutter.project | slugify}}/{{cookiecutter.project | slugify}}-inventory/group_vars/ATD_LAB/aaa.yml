@@ -27,3 +27,9 @@ local_users:
 aaa_authorization:
   exec:
     default: local
+
+aaa_authentication:
+  policies:
+    local:
+      # Allow admin with no password
+      allow_nopassword: True

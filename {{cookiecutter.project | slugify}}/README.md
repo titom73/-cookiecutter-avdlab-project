@@ -24,7 +24,7 @@ Basic EVPN/VXLAN setup based on [containerlab](https://containerlab.dev/) and [A
 make setup
 
 # Download cEOS image (Update version accordingly)
-ardl get eos --image-type cEOS --version 4.30.3M --import-docker
+ardl get eos --image-type cEOS --version {{cookiecutter.eos_version}} --import-docker
 
 # Build artifact
 ansible-playbook playbooks/atd-fabric-deploy.yml --tags build
@@ -37,8 +37,43 @@ containerlab deploy
 
 ![Network Diagram](topology.png)
 
-## Commands details
+- Inventory file: [atd-inventory/inventory.yml]({{cookiecutter.project | slugify}}/{{cookiecutter.project | slugify}}-inventory/inventory.yml)
+- AVD variables: [atd-inventory/group_vars]({{cookiecutter.project | slugify}}/{{cookiecutter.project | slugify}}-inventory/group_vars)
 
+## Authentication
+
+### Arista devices
+
+- Username: __admin__ (password: _none_)
+- Username: __arista__ (password: `arista`)
+
+### Host devices
+
+- Username: __root__ (password: `password123`)
+
+## Management IPs
+
+### Arista EOS containers
+
+| Hostname | Management Interface | IP Address      |
+| -------- | -------------------- | --------------  |
+| Spine1   | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(10) }}/24 |
+| Spine2   | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(11) }}/24 |
+| Leaf1    | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(12) }}/24 |
+| Leaf2    | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(13) }}/24 |
+| Leaf3    | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(14) }}/24 |
+| Leaf4    | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(15) }}/24 |
+
+### Linux containers
+
+| Hostname | Managemnt Interface | IP Address      |
+| -------- | ------------------- | --------------  |
+| Host1    | Eth0                | {{ cookiecutter.oob_subnet | generate_mgmt_ip(16) }}/24 |
+| Host2    | Eth0                | {{ cookiecutter.oob_subnet | generate_mgmt_ip(17) }}/24 |
+| Host3    | Eth0                | {{ cookiecutter.oob_subnet | generate_mgmt_ip(18) }}/24 |
+| Host4    | Eth0                | {{ cookiecutter.oob_subnet | generate_mgmt_ip(19) }}/24 |
+
+## Commands details
 
 ### Setup project environment
 
@@ -67,7 +102,7 @@ make setup
 
 ```bash
 # Download cEOS image (Update version accordingly)
-ardl get eos --image-type cEOS --version 4.30.3M --import-docker
+ardl get eos --image-type cEOS --version {{cookiecutter.eos_version}} --import-docker
 ```
 
 Full [`eos-downloader` documentation](https://github.com/titom73/eos-downloader)
@@ -117,8 +152,8 @@ sudo containerlab graph --dot --offline
 
 __Inventory:__
 
-- Inventory file: [atd-inventory/inventory.yml](atd-inventory/inventory.yml)
-- AVD variables: [atd-inventory/group_vars](atd-inventory/group_vars)
+- Inventory file: [atd-inventory/inventory.yml]({{cookiecutter.project | slugify}}/{{cookiecutter.project | slugify}}-inventory/inventory.yml)
+- AVD variables: [atd-inventory/group_vars]({{cookiecutter.project | slugify}}/{{cookiecutter.project | slugify}}-inventory/group_vars)
 
 __Commands__
 
@@ -148,36 +183,4 @@ ansible-playbook playbooks/atd-fabric-deploy.yml --tags build,deploy_eapi
 ansible-playbook playbooks/atd-fabric-deploy.yml --tags build,deploy_cvp
 ```
 
-## Authentication
-
-### Arista devices
-
-- Username: __admin__ (password: _none_ no ssh access)
-- Username: __arista__ (password: `arista`)
-
-### Host devices
-
-- Username: __root__ (password: `password123`)
-
-## Management IPs
-
-### Arista EOS containers
-
-| Hostname | Management Interface | IP Address      |
-| -------- | -------------------- | --------------  |
-| Spine1   | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(10) }}/24 |
-| Spine2   | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(11) }}/24 |
-| Leaf1    | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(12) }}/24 |
-| Leaf2    | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(13) }}/24 |
-| Leaf3    | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(14) }}/24 |
-| Leaf4    | Management0          | {{ cookiecutter.oob_subnet | generate_mgmt_ip(15) }}/24 |
-
-### Linux containers
-
-| Hostname | Managemnt Interface | IP Address      |
-| -------- | ------------------- | --------------  |
-| Host1    | Eth0                | {{ cookiecutter.oob_subnet | generate_mgmt_ip(16) }}/24 |
-| Host2    | Eth0                | {{ cookiecutter.oob_subnet | generate_mgmt_ip(17) }}/24 |
-| Host3    | Eth0                | {{ cookiecutter.oob_subnet | generate_mgmt_ip(18) }}/24 |
-| Host4    | Eth0                | {{ cookiecutter.oob_subnet | generate_mgmt_ip(19) }}/24 |
 

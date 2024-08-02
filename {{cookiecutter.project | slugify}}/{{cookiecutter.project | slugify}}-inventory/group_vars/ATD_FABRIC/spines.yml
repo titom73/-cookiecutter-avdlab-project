@@ -6,7 +6,7 @@
 # Spine Switches
 spine:
   defaults:
-    platform: ceos
+    platform: CEOS_FAKE_HW
     bgp_as: 65001
     loopback_ipv4_pool: 192.0.255.0/24
     mlag: false

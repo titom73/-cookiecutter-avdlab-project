@@ -18,6 +18,24 @@ platform_settings:
     feature_support:
       queue_monitor_length_notify: false
       interface_storm_control: false
+      # ! Not supported on cEOS platform
+      bgp_update_wait_install: False
+      bgp_update_wait_for_convergence: False
     raw_eos_cli: |
       interface Management0
+         no lldp transmit
+
+  - platforms: ['CEOS_FAKE_HW', 'cEOS-FAKE_HW', 'ceos_fake_hw', 'cEOSLab_fake_hw']
+    management_interface: Management1
+    reload_delay:
+      mlag: 300
+      non_mlag: 330
+    feature_support:
+      queue_monitor_length_notify: false
+      interface_storm_control: false
+      # ! Not supported on cEOS platform
+      bgp_update_wait_install: False
+      bgp_update_wait_for_convergence: False
+    raw_eos_cli: |
+      interface Management1
          no lldp transmit

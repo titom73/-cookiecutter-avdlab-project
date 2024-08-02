@@ -30,6 +30,9 @@ bgp_default_ipv4_unicast: false
 
 #### Override for vEOS Lab Caveats ####
 
+bgp_update_wait_install: False
+bgp_update_wait_for_convergence: False
+
 # Disable update wait-for-convergence and update wait-for-install,
 # which is not supported in vEOS-LAB.
 # Refer to design guide

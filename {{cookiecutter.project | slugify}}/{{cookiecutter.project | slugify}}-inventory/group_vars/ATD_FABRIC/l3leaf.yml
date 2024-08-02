@@ -1,13 +1,13 @@
 l3leaf:
   defaults:
-    platform: ceos
+    platform: CEOS_FAKE_HW
     loopback_ipv4_pool: 192.0.255.0/24
     loopback_ipv4_offset: 2
     vtep_loopback_ipv4_pool: 192.0.254.0/24
-    uplink_interfaces: [Ethernet2, Ethernet3]
+    uplink_interfaces: [Ethernet53/1, Ethernet54/1]
     uplink_switches: [spine1, spine2]
     uplink_ipv4_pool: 172.31.255.0/24
-    mlag_interfaces: [Ethernet1]
+    mlag_interfaces: [Ethernet55/1, Ethernet56/1]
     mlag_peer_ipv4_pool: 10.255.252.0/24
     mlag_peer_l3_ipv4_pool: 10.255.251.0/24
     virtual_router_mac_address: 00:1c:73:00:dc:01
@@ -28,11 +28,11 @@ l3leaf:
         - name: leaf1
           id: 1
           mgmt_ip: "{{ cookiecutter.oob_subnet | generate_ip_with_subnet(12) }}"
-          uplink_switch_interfaces: [Ethernet2, Ethernet2]
+          uplink_switch_interfaces: [Ethernet2/1, Ethernet2/1]
         - name: leaf2
           id: 2
           mgmt_ip: "{{ cookiecutter.oob_subnet | generate_ip_with_subnet(13) }}"
-          uplink_switch_interfaces: [Ethernet3, Ethernet3]
+          uplink_switch_interfaces: [Ethernet3/1, Ethernet3/1]
     - group: pod2
       bgp_as: 65102
       filter:
@@ -45,9 +45,9 @@ l3leaf:
         - name: leaf3
           id: 3
           mgmt_ip: "{{ cookiecutter.oob_subnet | generate_ip_with_subnet(14) }}"
-          uplink_switch_interfaces: [Ethernet4, Ethernet4]
+          uplink_switch_interfaces: [Ethernet4/1, Ethernet4/1]
         - name: leaf4
           id: 4
           mgmt_ip: "{{ cookiecutter.oob_subnet | generate_ip_with_subnet(15) }}"
-          uplink_switch_interfaces: [Ethernet5, Ethernet5]
+          uplink_switch_interfaces: [Ethernet5/1, Ethernet5/1]
 
