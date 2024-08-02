@@ -16,7 +16,7 @@ topology:
       mgmt-ipv4: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(10) }}"
       startup-config: {{cookiecutter.project | slugify}}-inventory/intended/configs/spine1.cfg
       binds:
-        - clab-atd-dual-dc-evpn-vxlan-inventory/eos-intf-mapping/DCS-7050CX3-32S.json:/mnt/flash/EosIntfMapping.json:ro
+        - {{cookiecutter.project | slugify}}-inventory/eos-intf-mapping/DCS-7050CX3-32S.json:/mnt/flash/EosIntfMapping.json:ro
       env:
         TMODE: lacp
         MODEL_NAME: DCS-7050CX3-32S-F
@@ -28,7 +28,7 @@ topology:
       mgmt-ipv4: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(11) }}"
       startup-config: {{cookiecutter.project | slugify}}-inventory/intended/configs/spine2.cfg
       binds:
-        - clab-atd-dual-dc-evpn-vxlan-inventory/eos-intf-mapping/DCS-7050CX3-32S.json:/mnt/flash/EosIntfMapping.json:ro
+        - {{cookiecutter.project | slugify}}-inventory/eos-intf-mapping/DCS-7050CX3-32S.json:/mnt/flash/EosIntfMapping.json:ro
       env:
         TMODE: lacp
         MODEL_NAME: DCS-7050CX3-32S-F
@@ -40,7 +40,7 @@ topology:
       mgmt-ipv4: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(12) }}"
       startup-config: {{cookiecutter.project | slugify}}-inventory/intended/configs/leaf1.cfg
       binds:
-        - clab-atd-dual-dc-evpn-vxlan-inventory/eos-intf-mapping/DCS-7050SX3-48YC8.json:/mnt/flash/EosIntfMapping.json:ro
+        - {{cookiecutter.project | slugify}}-inventory/eos-intf-mapping/DCS-7050SX3-48YC8.json:/mnt/flash/EosIntfMapping.json:ro
       env:
         TMODE: lacp
         MODEL_NAME: DCS-7050SX3-48YC8
@@ -52,7 +52,7 @@ topology:
       mgmt-ipv4: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(13) }}"
       startup-config: {{cookiecutter.project | slugify}}-inventory/intended/configs/leaf2.cfg
       binds:
-        - clab-atd-dual-dc-evpn-vxlan-inventory/eos-intf-mapping/DCS-7050SX3-48YC8.json:/mnt/flash/EosIntfMapping.json:ro
+        - {{cookiecutter.project | slugify}}-inventory/eos-intf-mapping/DCS-7050SX3-48YC8.json:/mnt/flash/EosIntfMapping.json:ro
       env:
         TMODE: lacp
         MODEL_NAME: DCS-7050SX3-48YC8
@@ -64,7 +64,7 @@ topology:
       mgmt-ipv4: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(14) }}"
       startup-config: {{cookiecutter.project | slugify}}-inventory/intended/configs/leaf3.cfg
       binds:
-        - clab-atd-dual-dc-evpn-vxlan-inventory/eos-intf-mapping/DCS-7050SX3-48YC8.json:/mnt/flash/EosIntfMapping.json:ro
+        - {{cookiecutter.project | slugify}}-inventory/eos-intf-mapping/DCS-7050SX3-48YC8.json:/mnt/flash/EosIntfMapping.json:ro
       env:
         TMODE: lacp
         MODEL_NAME: DCS-7050SX3-48YC8
@@ -76,7 +76,7 @@ topology:
       mgmt-ipv4: "{{ cookiecutter.oob_subnet | generate_mgmt_ip(15) }}"
       startup-config: {{cookiecutter.project | slugify}}-inventory/intended/configs/leaf4.cfg
       binds:
-        - clab-atd-dual-dc-evpn-vxlan-inventory/eos-intf-mapping/DCS-7050SX3-48YC8.json:/mnt/flash/EosIntfMapping.json:ro
+        - {{cookiecutter.project | slugify}}-inventory/eos-intf-mapping/DCS-7050SX3-48YC8.json:/mnt/flash/EosIntfMapping.json:ro
       env:
         TMODE: lacp
         MODEL_NAME: DCS-7050SX3-48YC8
