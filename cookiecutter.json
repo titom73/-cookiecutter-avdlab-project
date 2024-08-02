@@ -10,6 +10,7 @@
     "{{cookiecutter.project | slugify}}-inventory/group_vars/ATD_LAB/cvp.yml",
     "{{cookiecutter.project | slugify}}-inventory/group_vars/ATD_LAB/management.yml",
     "{{cookiecutter.project | slugify}}-inventory/group_vars/all/auth_management.yml",
+    "**-inventory/ceos-configs/**",
     ".forgejo/workflows/ondemand.yml"
   ],
   "_extensions": [
