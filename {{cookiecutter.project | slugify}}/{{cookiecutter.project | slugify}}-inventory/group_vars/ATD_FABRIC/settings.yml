@@ -3,6 +3,13 @@
 
 fabric_name: ATD_FABRIC
 
+# Allow a unique /31 for mlag links
+# https://avd.arista.com/4.10/roles/eos_designs/docs/input-variables.html#fabric-ip-addressing
+fabric_ip_addressing:
+  mlag:
+    algorithm: "same_subnet"
+    ipv4_prefix_length: 31
+
 # Enable vlan aware bundles
 evpn_vlan_aware_bundles: false
 
@@ -45,6 +52,14 @@ bfd_multihop:
   interval: 1200
   min_rx: 1200
   multiplier: 3
+
+# Force ARP aging to be shorter than mac aging.
+# Should be configured in regrds with firewall in place.
+arp:
+  aging:
+    timeout_default: 290
+mac_address_table:
+  aging_time: 300
 
 # List of additional CVP configlets to bind to devices and containers
 # Configlets MUST be configured on CVP before running AVD playbooks.
