@@ -8,8 +8,8 @@ l3leaf:
     uplink_switches: [spine1, spine2]
     uplink_ipv4_pool: 172.31.255.0/24
     mlag_interfaces: [Ethernet55/1, Ethernet56/1]
-    mlag_peer_ipv4_pool: 10.255.252.0/24
-    mlag_peer_l3_ipv4_pool: 10.255.251.0/24
+    mlag_peer_ipv4_pool: 10.255.252.0/31
+    mlag_peer_l3_ipv4_pool: 10.255.252.2/31
     virtual_router_mac_address: 00:1c:73:00:dc:01
     spanning_tree_mode: mstp
     spanning_tree_priority: 16384
@@ -50,4 +50,3 @@ l3leaf:
           id: 4
           mgmt_ip: "{{ cookiecutter.oob_subnet | generate_ip_with_subnet(15) }}"
           uplink_switch_interfaces: [Ethernet5/1, Ethernet5/1]
-
