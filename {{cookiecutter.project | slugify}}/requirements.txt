@@ -1,6 +1,6 @@
 # Generic requirements
 ansible==8.6.1
-ansible-core==2.15.6
+ansible-core==2.17.7
 anta==0.14.0
 eos-downloader>=0.9.0
 
